@@ -1,0 +1,99 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    form {      width: 300px;
+    }
+    input, textarea, button {
+      width: 100%;
+      margin: 10px 0;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+    .error {
+      color: red;
+      display: none;
+    }
+  </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+
+  <h2>Contact Form</h2>
+  <form id="myForm">
+    <label>Name:</label>
+    <input type="text" id="name" placeholder="Enter your name">
+    <label>Email:</label>
+    <input type="email" id="email" placeholder="Enter your email">
+    <label>Message:</label>
+    <textarea id="message" placeholder="Write your message"></textarea>
+    <Label>Nationality</Label>
+    <select id="nationality">
+      <option>Select</option>
+      <option>Indian</option>
+      <option>Pakistani</option>
+      <option>Arabian</option>
+    </select>
+    <button type="submit">Submit</button>
+  </form>
+  <div id="test" style="border: 2px solid red; margin: 20px; padding: 15px;">Hello</div>
+
+  <script>
+    $(document).ready(function () {
+
+      // Focus Event for name input field
+      $('#name').focus(function () {
+        $(this).css("background-color", "yellow");
+      });
+
+      // Focus Event for email and message input field
+      $('#email, #message').focus(function () {
+        $(this).css("background-color", "green");
+      });
+
+      // Focus Event for nationality drop down selector
+      $('#nationality').focus(function () {
+        $(this).css({
+          "background-color": "red",
+          "color": "yellow"
+        });
+      });
+
+      // Change Event for nationality drop down selector
+      $('#nationality').change(function () {
+        $(this).css({
+          "background-color": "blue",
+          "color": "cyan"
+        });
+        var variable_1 = $(this).val(); // val() built in function to get the value
+        $('#test').html(variable_1); // sets the value
+      });
+
+      // Select Event for name, email and message input field
+      $('#name, #email, #message').select(function () { // only works on input fields
+        $(this).css("background-color", "pink");
+      });
+
+      // Blur Event for name, email, message input field and nationality drop down selector
+      $('#name, #email, #message, #nationality').blur(function () {
+        $(this).css({
+          "background-color": "",
+          "color": ""
+        });
+      });
+
+      // Submit event for submiting th form using submit button
+      $("#myForm").submit(function (e) {
+        // e.preventDefault(); // prevent form from refreshing page
+        alert("Form submitted!");
+      });
+    });
+  </script>
+</body>
+</html>
